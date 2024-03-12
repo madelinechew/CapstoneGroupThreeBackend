@@ -362,6 +362,31 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiGpioGpio extends Schema.CollectionType {
+  collectionName: 'gpios';
+  info: {
+    singularName: 'gpio';
+    pluralName: 'gpios';
+    displayName: 'GPIO';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    servo: Attribute.Integer;
+    light: Attribute.Integer;
+    temp: Attribute.Integer;
+    hold: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::gpio.gpio', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::gpio.gpio', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTestDataTestData extends Schema.CollectionType {
   collectionName: 'test_datas';
   info: {
@@ -822,6 +847,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::gpio.gpio': ApiGpioGpio;
       'api::test-data.test-data': ApiTestDataTestData;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
