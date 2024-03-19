@@ -387,6 +387,41 @@ export interface ApiGpioGpio extends Schema.CollectionType {
   };
 }
 
+export interface ApiGpioPinGpioPin extends Schema.CollectionType {
+  collectionName: 'gpio_pins';
+  info: {
+    singularName: 'gpio-pin';
+    pluralName: 'gpio-pins';
+    displayName: 'GPIO-pin';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    light: Attribute.Boolean;
+    vacationHold: Attribute.Boolean;
+    temperature: Attribute.Integer;
+    ventAngle: Attribute.Integer;
+    alarm: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gpio-pin.gpio-pin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gpio-pin.gpio-pin',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTestDataTestData extends Schema.CollectionType {
   collectionName: 'test_datas';
   info: {
@@ -848,6 +883,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::gpio.gpio': ApiGpioGpio;
+      'api::gpio-pin.gpio-pin': ApiGpioPinGpioPin;
       'api::test-data.test-data': ApiTestDataTestData;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

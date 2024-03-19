@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gpio_pins",
+  "info": {
+    "singularName": "gpio-pin",
+    "pluralName": "gpio-pins",
+    "displayName": "GPIO-pin",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "light": {
+      "type": "boolean"
+    },
+    "vacationHold": {
+      "type": "boolean"
+    },
+    "temperature": {
+      "type": "integer"
+    },
+    "ventAngle": {
+      "type": "integer"
+    },
+    "alarm": {
+      "type": "boolean"
+    }
+  }
+}
