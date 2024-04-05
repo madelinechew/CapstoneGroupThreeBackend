@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * gpio service
+ * csi-data service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::gpio.gpio');
+module.exports = createCoreService('api::csi-data.csi-data');

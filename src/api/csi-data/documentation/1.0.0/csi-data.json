@@ -1,5 +1,5 @@
 {
-  "/gpios": {
+  "/csi-datas": {
     "get": {
       "responses": {
         "200": {
@@ -7,7 +7,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GpioListResponse"
+                "$ref": "#/components/schemas/CsiDataListResponse"
               }
             }
           }
@@ -64,7 +64,7 @@
         }
       },
       "tags": [
-        "Gpio"
+        "Csi-data"
       ],
       "parameters": [
         {
@@ -169,7 +169,7 @@
           }
         }
       ],
-      "operationId": "get/gpios"
+      "operationId": "get/csi-datas"
     },
     "post": {
       "responses": {
@@ -178,7 +178,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GpioResponse"
+                "$ref": "#/components/schemas/CsiDataResponse"
               }
             }
           }
@@ -235,23 +235,23 @@
         }
       },
       "tags": [
-        "Gpio"
+        "Csi-data"
       ],
       "parameters": [],
-      "operationId": "post/gpios",
+      "operationId": "post/csi-datas",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/GpioRequest"
+              "$ref": "#/components/schemas/CsiDataRequest"
             }
           }
         }
       }
     }
   },
-  "/gpios/{id}": {
+  "/csi-datas/{id}": {
     "get": {
       "responses": {
         "200": {
@@ -259,7 +259,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GpioResponse"
+                "$ref": "#/components/schemas/CsiDataResponse"
               }
             }
           }
@@ -316,7 +316,7 @@
         }
       },
       "tags": [
-        "Gpio"
+        "Csi-data"
       ],
       "parameters": [
         {
@@ -330,7 +330,7 @@
           }
         }
       ],
-      "operationId": "get/gpios/{id}"
+      "operationId": "get/csi-datas/{id}"
     },
     "put": {
       "responses": {
@@ -339,7 +339,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GpioResponse"
+                "$ref": "#/components/schemas/CsiDataResponse"
               }
             }
           }
@@ -396,7 +396,7 @@
         }
       },
       "tags": [
-        "Gpio"
+        "Csi-data"
       ],
       "parameters": [
         {
@@ -410,13 +410,13 @@
           }
         }
       ],
-      "operationId": "put/gpios/{id}",
+      "operationId": "put/csi-datas/{id}",
       "requestBody": {
         "required": true,
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/GpioRequest"
+              "$ref": "#/components/schemas/CsiDataRequest"
             }
           }
         }
@@ -487,7 +487,7 @@
         }
       },
       "tags": [
-        "Gpio"
+        "Csi-data"
       ],
       "parameters": [
         {
@@ -501,7 +501,7 @@
           }
         }
       ],
-      "operationId": "delete/gpios/{id}"
+      "operationId": "delete/csi-datas/{id}"
     }
   }
 }

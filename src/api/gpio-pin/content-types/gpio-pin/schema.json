@@ -18,14 +18,28 @@
     "vacationHold": {
       "type": "boolean"
     },
-    "temperature": {
-      "type": "integer"
+    "tempUser": {
+      "type": "integer",
+      "unique": true,
+      "required": true
     },
     "ventAngle": {
       "type": "integer"
     },
     "alarm": {
       "type": "boolean"
+    },
+    "tempRead": {
+      "type": "integer"
+    },
+    "isCSI": {
+      "type": "boolean"
+    },
+    "uid": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "gid"
     }
   }
 }

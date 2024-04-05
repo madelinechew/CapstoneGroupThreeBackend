@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * test-data controller
+ * csi-data controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::test-data.test-data');
+module.exports = createCoreController('api::csi-data.csi-data');

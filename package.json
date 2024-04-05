@@ -15,6 +15,7 @@
     "@strapi/plugin-i18n": "4.19.1",
     "@strapi/plugin-users-permissions": "4.19.1",
     "@strapi/strapi": "4.19.1",
+    "bcrypt": "^5.1.1",
     "better-sqlite3": "8.6.0",
     "cors": "^2.8.5",
     "react": "^18.0.0",

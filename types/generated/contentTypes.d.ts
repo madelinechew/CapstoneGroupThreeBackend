@@ -362,27 +362,34 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiGpioGpio extends Schema.CollectionType {
-  collectionName: 'gpios';
+export interface ApiCsiDataCsiData extends Schema.CollectionType {
+  collectionName: 'csi_datas';
   info: {
-    singularName: 'gpio';
-    pluralName: 'gpios';
-    displayName: 'GPIO';
+    singularName: 'csi-data';
+    pluralName: 'csi-datas';
+    displayName: 'csiData';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    servo: Attribute.Integer;
-    light: Attribute.Integer;
-    temp: Attribute.Integer;
-    hold: Attribute.Integer;
+    InRoom: Attribute.Boolean;
+    ventLeft: Attribute.Boolean;
+    ventAngle: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::gpio.gpio', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<
+      'api::csi-data.csi-data',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
-    updatedBy: Attribute.Relation<'api::gpio.gpio', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<
+      'api::csi-data.csi-data',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -401,9 +408,16 @@ export interface ApiGpioPinGpioPin extends Schema.CollectionType {
   attributes: {
     light: Attribute.Boolean;
     vacationHold: Attribute.Boolean;
-    temperature: Attribute.Integer;
+    tempUser: Attribute.Integer & Attribute.Required & Attribute.Unique;
     ventAngle: Attribute.Integer;
     alarm: Attribute.Boolean;
+    tempRead: Attribute.Integer;
+    isCSI: Attribute.Boolean;
+    uid: Attribute.Relation<
+      'api::gpio-pin.gpio-pin',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -415,37 +429,6 @@ export interface ApiGpioPinGpioPin extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::gpio-pin.gpio-pin',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTestDataTestData extends Schema.CollectionType {
-  collectionName: 'test_datas';
-  info: {
-    singularName: 'test-data';
-    pluralName: 'test-datas';
-    displayName: 'testData';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::test-data.test-data',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::test-data.test-data',
       'oneToOne',
       'admin::user'
     > &
@@ -826,7 +809,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -855,6 +837,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    gid: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::gpio-pin.gpio-pin'
+    >;
+    userDatas: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -882,9 +870,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::gpio.gpio': ApiGpioGpio;
+      'api::csi-data.csi-data': ApiCsiDataCsiData;
       'api::gpio-pin.gpio-pin': ApiGpioPinGpioPin;
-      'api::test-data.test-data': ApiTestDataTestData;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
